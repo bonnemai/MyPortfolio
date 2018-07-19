@@ -7,6 +7,7 @@ import addition
 
 url='http://localhost:5000/two'
 
+
 class TestAddition(unittest.TestCase):
     def __init__(self, *args, **kwargs):
         super(TestAddition, self).__init__(*args, **kwargs)
