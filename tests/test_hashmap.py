@@ -5,18 +5,18 @@ from hashmap import HashMap, OptimizedHashMap
 
 
 class TestHashMap(unittest.TestCase):
-    # def __init__(self):
-    #     super()
-    #     logging.basicConfig(level=logging.DEBUG)
-        # logging.basicConfig(filename='example.log',level=logging.DEBUG)
+    def __init__(self, *args, **kwargs):
+        super(TestHashMap, self).__init__(*args, **kwargs)
+        logging.basicConfig(level=logging.DEBUG)
 
     def test_1(self):
+
         value_a='Value A'
         key_a='a'
         hashmap = HashMap()
         hashmap.put(key_a, value_a)
         self.assertEqual(value_a, hashmap.get(key_a))
-        logging.basicConfig(level=logging.DEBUG)
+        # logging.basicConfig(level=logging.DEBUG)
         logging.info('Got %s', hashmap.get(key_a))
 
 
@@ -31,7 +31,7 @@ class TestHashMap(unittest.TestCase):
         hashmap.put(key_b, value_b)
 
         self.assertEqual(value_a, hashmap.get(key_a))
-        logging.basicConfig(level=logging.DEBUG)
+        # logging.basicConfig(level=logging.DEBUG)
         logging.info('Got %s', hashmap.get(key_a))
 
 
@@ -47,17 +47,12 @@ class TestHashMap(unittest.TestCase):
         hashmap.put(key_b, value_b)
 
         self.assertEqual(value_b, hashmap.get(key_a))
-        logging.basicConfig(level=logging.DEBUG)
+        # logging.basicConfig(level=logging.DEBUG)
         logging.info('Got %s', hashmap.get(key_a))
 
 # TestHashMap()
 
 class TestOptimizedHashMap(unittest.TestCase):
-    # def __init__(self):
-    #     super()
-    #     logging.basicConfig(level=logging.DEBUG)
-    # logging.basicConfig(filename='example.log',level=logging.DEBUG)
-
     def __init__(self, *args, **kwargs):
         super(TestOptimizedHashMap, self).__init__(*args, **kwargs)
         logging.basicConfig(level=logging.DEBUG)
@@ -83,7 +78,7 @@ class TestOptimizedHashMap(unittest.TestCase):
         hashmap.put(key_b, value_b)
 
         self.assertEqual(value_a, hashmap.get(key_a))
-        logging.basicConfig(level=logging.DEBUG)
+        # logging.basicConfig(level=logging.DEBUG)
         logging.info('Got %s', hashmap.get(key_a))
 
 
@@ -99,7 +94,7 @@ class TestOptimizedHashMap(unittest.TestCase):
         hashmap.put(key_b, value_b)
 
         self.assertEqual(value_b, hashmap.get(key_a))
-        logging.basicConfig(level=logging.DEBUG)
+        # logging.basicConfig(level=logging.DEBUG)
         logging.info('Got %s', hashmap.get(key_a))
 
 
