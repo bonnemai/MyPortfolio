@@ -11,7 +11,7 @@ class Node():
 
 
     def to_string(self):
-        ''' TODO: could have moved to an utiliy function... '''
+        ''' TODO: could have moved to an utility function... '''
         current_node = self
         while current_node.next_node is not None:
             print(current_node.object)
