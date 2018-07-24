@@ -1,6 +1,5 @@
 import logging
 import unittest
-
 import requests
 import requests_mock
 import addition

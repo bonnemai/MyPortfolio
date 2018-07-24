@@ -44,5 +44,34 @@ class OptimizedHashMap():
         if not found:
             self.array[index].append([key, value])
 
+
+
+
+class DoubleArrayHashMap():
+    def __init__(self):
+        self.keys=[]
+        self.values=[]
+
+    def __get_index(self, key):
+        for i in range(len(self.keys)):
+            if self.keys[i]==key:
+                return i
+
+
+    def get(self, key):
+        index=self.__get_index(key)
+        if index is not None:
+            return self.values[index]
+
+
+    def put(self, key, value):
+        index=self.__get_index(key)
+        if index is not None:
+            self.values[index]=value
+        else:
+            self.keys.append(key)
+            self.values.append(value)
+
+
 # print(hash('a'))
 # print(hash('a') & 15)

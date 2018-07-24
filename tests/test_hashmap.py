@@ -1,7 +1,7 @@
 import logging
 import time
 import unittest
-from hashmap import HashMap, OptimizedHashMap
+from hashmap import HashMap, OptimizedHashMap, DoubleArrayHashMap
 
 
 class TestHashMap(unittest.TestCase):
@@ -10,47 +10,39 @@ class TestHashMap(unittest.TestCase):
         logging.basicConfig(level=logging.DEBUG)
 
     def test_1(self):
-
-        value_a='Value A'
-        key_a='a'
+        value_a = 'Value A'
+        key_a = 'a'
         hashmap = HashMap()
         hashmap.put(key_a, value_a)
         self.assertEqual(value_a, hashmap.get(key_a))
-        # logging.basicConfig(level=logging.DEBUG)
         logging.info('Got %s', hashmap.get(key_a))
 
-
     def test_2(self):
-        value_a='Value A'
-        key_a='a'
-        value_b='Value B'
-        key_b='b'
+        value_a = 'Value A'
+        key_a = 'a'
+        value_b = 'Value B'
+        key_b = 'b'
 
         hashmap = HashMap()
         hashmap.put(key_a, value_a)
         hashmap.put(key_b, value_b)
 
         self.assertEqual(value_a, hashmap.get(key_a))
-        # logging.basicConfig(level=logging.DEBUG)
         logging.info('Got %s', hashmap.get(key_a))
 
-
-
     def test_overwrite_value(self):
-        value_a='Value A'
-        key_a='a'
-        value_b='Value B'
-        key_b='a'
+        value_a = 'Value A'
+        key_a = 'a'
+        value_b = 'Value B'
+        key_b = 'a'
 
         hashmap = HashMap()
         hashmap.put(key_a, value_a)
         hashmap.put(key_b, value_b)
 
         self.assertEqual(value_b, hashmap.get(key_a))
-        # logging.basicConfig(level=logging.DEBUG)
         logging.info('Got %s', hashmap.get(key_a))
 
-# TestHashMap()
 
 class TestOptimizedHashMap(unittest.TestCase):
     def __init__(self, *args, **kwargs):
@@ -58,45 +50,39 @@ class TestOptimizedHashMap(unittest.TestCase):
         logging.basicConfig(level=logging.DEBUG)
 
     def test_1(self):
-        value_a='Value A'
-        key_a='a'
+        value_a = 'Value A'
+        key_a = 'a'
         hashmap = OptimizedHashMap()
         hashmap.put(key_a, value_a)
         self.assertEqual(value_a, hashmap.get(key_a))
 
         logging.info('Got %s', hashmap.get(key_a))
 
-
     def test_2(self):
-        value_a='Value A'
-        key_a='a'
-        value_b='Value B'
-        key_b='b'
+        value_a = 'Value A'
+        key_a = 'a'
+        value_b = 'Value B'
+        key_b = 'b'
 
         hashmap = OptimizedHashMap()
         hashmap.put(key_a, value_a)
         hashmap.put(key_b, value_b)
 
         self.assertEqual(value_a, hashmap.get(key_a))
-        # logging.basicConfig(level=logging.DEBUG)
         logging.info('Got %s', hashmap.get(key_a))
 
-
-
     def test_overwrite_value(self):
-        value_a='Value A'
-        key_a='a'
-        value_b='Value B'
-        key_b='a'
+        value_a = 'Value A'
+        key_a = 'a'
+        value_b = 'Value B'
+        key_b = 'a'
 
         hashmap = OptimizedHashMap()
         hashmap.put(key_a, value_a)
         hashmap.put(key_b, value_b)
 
         self.assertEqual(value_b, hashmap.get(key_a))
-        # logging.basicConfig(level=logging.DEBUG)
         logging.info('Got %s', hashmap.get(key_a))
-
 
     def test_large_nb(self):
         '''
@@ -109,29 +95,72 @@ class TestOptimizedHashMap(unittest.TestCase):
         INFO:root:10000 put done in 2.579 secs
         INFO:root:10000 get done in 2.366 secs
 
+        DoubleArrayHashMap
+        INFO:root:10000 put done in 4.575 secs
+        INFO:root:10000 get done in 4.155 secs
+
         :return:
         '''
         hashmap = HashMap()
         # hashmap = OptimizedHashMap()
+        # hashmap = DoubleArrayHashMap()
 
-        nb=10000
-        start=time.time()
+        nb = 10000
+        start = time.time()
         for i in range(nb):
-            value_a='Value {}'.format(i)
-            key_a='a_{}'.format(i)
+            value_a = 'Value {}'.format(i)
+            key_a = 'a_{}'.format(i)
             hashmap.put(key_a, value_a)
-        logging.info('%s put done in %.3f secs', nb, time.time()-start)
-        # hashmap.put(key_b, value_b)
+        logging.info('%s put done in %.3f secs', nb, time.time() - start)
 
-        # self.assertEqual(value_b, hashmap.get(key_a))
         logging.basicConfig(level=logging.DEBUG)
         mid = time.time()
         for i in range(nb):
             hashmap.get('a_{}'.format(i))
-        logging.info('%s get done in %.3f secs', nb, time.time()-mid)
+        logging.info('%s get done in %.3f secs', nb, time.time() - mid)
 
         logging.info('Got %s', hashmap.get('a_0'))
 
+
+class TestDoubleArrayHashMap(unittest.TestCase):
+    def __init__(self, *args, **kwargs):
+        super(TestDoubleArrayHashMap, self).__init__(*args, **kwargs)
+        logging.basicConfig(level=logging.DEBUG)
+
+    def test_1(self):
+        value_a = 'Value A'
+        key_a = 'a'
+        hashmap = DoubleArrayHashMap()
+        hashmap.put(key_a, value_a)
+        self.assertEqual(value_a, hashmap.get(key_a))
+
+        logging.info('Got %s', hashmap.get(key_a))
+
+    def test_2(self):
+        value_a = 'Value A'
+        key_a = 'a'
+        value_b = 'Value B'
+        key_b = 'b'
+
+        hashmap = DoubleArrayHashMap()
+        hashmap.put(key_a, value_a)
+        hashmap.put(key_b, value_b)
+
+        self.assertEqual(value_a, hashmap.get(key_a))
+        logging.info('Got %s', hashmap.get(key_a))
+
+    def test_overwrite_value(self):
+        value_a = 'Value A'
+        key_a = 'a'
+        value_b = 'Value B'
+        key_b = 'a'
+
+        hashmap = DoubleArrayHashMap()
+        hashmap.put(key_a, value_a)
+        hashmap.put(key_b, value_b)
+
+        self.assertEqual(value_b, hashmap.get(key_a))
+        logging.info('Got %s', hashmap.get(key_a))
 
 
 if __name__ == '__main__':
